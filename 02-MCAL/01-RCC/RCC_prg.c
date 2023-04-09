@@ -118,11 +118,11 @@ static void RCC_vInitPLL(){
 		#endif
 
 		/* Selecting HSE divider */
-		#if PLL_HSE_DIV == HSE_NOT_DIVIDED
+		#if PLL_HSE_DIV == PLL_HSE_NOT_DIV
 			/*	Select HSE as PLL entry clock source	*/
 			SET_BIT(RCC_CFGR, PLLSRC);
 			CLR_BIT(RCC_CFGR, PLLXTPRE);
-		#elif PLL_HSE_DIV == HSE_DIVIDED_BY_2
+		#elif PLL_HSE_DIV == PLL_HSE_DIV_2
 			/*	Select HSE/2 as PLL entry clock source	*/
 			SET_BIT(RCC_CFGR, PLLSRC);
 			SET_BIT(RCC_CFGR, PLLXTPRE);
