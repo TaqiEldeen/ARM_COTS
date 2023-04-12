@@ -17,7 +17,7 @@
 *   3- HSE_RC_SELECT
 *	4- PLL_SELECT        
 */
-#define RCC_SYSCLK_SELECT	HSE_CRYSTAL_SELECT
+#define RCC_SYSCLK_SELECT	PLL_SELECT
 
 /* Use this if only you chose PLL_SELECT */
 #if RCC_SYSCLK_SELECT == PLL_SELECT

@@ -117,25 +117,22 @@ static void RCC_vInitPLL(){
 			#error "Wrong HSE clock source selection!"
 		#endif
 
+		/* Selecting PLL Multiplier */
+		RCC_CFGR = (RCC_CFGR & PLL_MUL_MASK) | (PLLMUL << PLL_MUL_SELECT);
+
 		/* Selecting HSE divider */
 		#if PLL_HSE_DIV == PLL_HSE_NOT_DIV
 			/*	Select HSE as PLL entry clock source	*/
+			CLR_BIT(RCC_CFGR, PLLXTPRE);			
 			SET_BIT(RCC_CFGR, PLLSRC);
-			CLR_BIT(RCC_CFGR, PLLXTPRE);
 		#elif PLL_HSE_DIV == PLL_HSE_DIV_2
 			/*	Select HSE/2 as PLL entry clock source	*/
-			SET_BIT(RCC_CFGR, PLLSRC);
 			SET_BIT(RCC_CFGR, PLLXTPRE);
+			SET_BIT(RCC_CFGR, PLLSRC);
 		#else
 			#error "Wrong PLL entry clock source selection!"
 		#endif
 
-		/* Selecting PLL Multiplier */
-		RCC_CFGR = (RCC_CFGR & PLL_MUL_MASK) | (PLLMUL << PLL_MUL_SELECT);
-
-		/*	Select HSE as PLL entry clock source	*/
-		SET_BIT(RCC_CFGR, PLLSRC);
-		CLR_BIT(RCC_CFGR, PLLXTPRE);
 	#else
 		#error "Wrong PLL entry clock source selection!"
 	#endif
