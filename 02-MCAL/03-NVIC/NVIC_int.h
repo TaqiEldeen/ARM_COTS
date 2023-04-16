@@ -9,4 +9,33 @@
 #ifndef NVIC_INT_H_
 #define NVIC_INT_H_
 
+/**********************************************************************************************************
+ * Description : Interface Function to Enable Interrupts in NVIC
+ * Outputs     : Void
+ * Inputs      : Interrupt Number
+ ***********************************************************************************************************/
+void NVIC_vEnableInterrupt(u8 A_u8IntNumber);
+
+/**********************************************************************************************************
+ * Description : Interface Function to Disable Interrupts in NVIC
+ * Outputs     : Void
+ * Inputs      : Interrupt Number
+ ***********************************************************************************************************/
+void NVIC_vDisableInterrupt(u8 A_u8IntNumber);
+
+/**********************************************************************************************************
+ * Description : Interface Function to Set Pending Interrupts in NVIC
+ * Outputs     : Void
+ * Inputs      : Interrupt Number
+ ***********************************************************************************************************/
+void NVIC_vSetPendingInterrupt(u8 A_u8IntNumber);
+
+/**********************************************************************************************************
+ * Description : Interface Function to Clear Pending Interrupts in NVIC
+ * Outputs     : Void
+ * Inputs      : Interrupt Number
+ ***********************************************************************************************************/
+void NVIC_vClearPendingInterrupt(u8 A_u8IntNumber);
+
+
 #endif /* NVIC_INT_H_ */
