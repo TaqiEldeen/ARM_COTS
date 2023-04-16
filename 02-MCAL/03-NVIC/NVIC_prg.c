@@ -85,3 +85,21 @@ void NVIC_vClearPendingInterrupt(u8 A_u8IntNumber) {
         /* Return Error */
     }
 }
+
+/**********************************************************************************************************
+ * Description : Interface Function to Get Active Interrupts in NVIC
+ * Outputs     : Void
+ * Inputs      : Interrupt Number
+ ***********************************************************************************************************/
+u8 NVIC_u8GetActiveInterrupt(u8 A_u8IntNumber) {
+    u8 L_u8ActiveState = 0;
+    if (A_u8IntNumber <= 31) {
+        L_u8ActiveState = GET_BIT(NVIC_IABR0, A_u8IntNumber);
+    } else if (A_u8IntNumber <= 59) {
+        A_u8IntNumber -= 32;
+        L_u8ActiveState = GET_BIT(NVIC_IABR1, A_u8IntNumber);
+    } else {
+        /* Return Error */
+    }
+    return L_u8ActiveState;
+}

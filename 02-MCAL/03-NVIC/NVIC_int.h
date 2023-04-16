@@ -37,5 +37,13 @@ void NVIC_vSetPendingInterrupt(u8 A_u8IntNumber);
  ***********************************************************************************************************/
 void NVIC_vClearPendingInterrupt(u8 A_u8IntNumber);
 
+/**********************************************************************************************************
+ * Description : Interface Function to Get Active Interrupts in NVIC
+ * Outputs     : Void
+ * Inputs      : Interrupt Number
+ ***********************************************************************************************************/
+u8 NVIC_u8GetActiveInterrupt(u8 A_u8IntNumber);
+
+
 
 #endif /* NVIC_INT_H_ */
