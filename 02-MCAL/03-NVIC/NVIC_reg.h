@@ -36,7 +36,7 @@
 *       So we will use an array to access it
 *       Therefore we dont dereference it here
 */
-#define NVIC_IPR				 ((volatile u32*)(NVIC_BASE_ADDRESS + 0x300))
+#define NVIC_IPR				 ((volatile u8*)(NVIC_BASE_ADDRESS + 0x300))
 
 /*      Software trigger interrupt register  */
 #define NVIC_STIR				*((volatile u32*)(NVIC_BASE_ADDRESS + 0xE00))
