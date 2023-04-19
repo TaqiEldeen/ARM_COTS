@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "rcc_reg.h": "c"
+        "rcc_reg.h": "c",
+        "std_types.h": "c",
+        "afio_pri.h": "c",
+        "bit_math.h": "c",
+        "afio_int.h": "c"
     }
 }
