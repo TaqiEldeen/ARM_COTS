@@ -119,15 +119,15 @@ void NVIC_vSetPriority(u8 A_u8IntId, u8 A_u8SubPriority, u8 A_u8GroupPriority){
     #if NVIC_PRIORITY_GROUPING == NVIC_PRIORITY_GROUPING_0
         NVIC_IPR[A_u8IntId] = (A_u8GroupPriority << 4);
     #elif NVIC_PRIORITY_GROUPING == NVIC_PRIORITY_GROUPING_1
-        if(A_u8Priority < 2) {  /* Prevent wrong priority */
+        if(A_u8SubPriority < 2) {  /* Prevent wrong priority */
             NVIC_IPR[A_u8IntId] = (A_u8GroupPriority << 5) | (A_u8SubPriority << 4);
         }
     #elif NVIC_PRIORITY_GROUPING == NVIC_PRIORITY_GROUPING_2
-        if(A_u8Priority < 4) {  /* Prevent wrong priority */
+        if(A_u8SubPriority < 4) {  /* Prevent wrong priority */
             NVIC_IPR[A_u8IntId] = (A_u8GroupPriority << 6) | (A_u8SubPriority << 4);
         }
     #elif NVIC_PRIORITY_GROUPING == NVIC_PRIORITY_GROUPING_3
-        if(A_u8Priority < 8) {  /* Prevent wrong priority */
+        if(A_u8SubPriority < 8) {  /* Prevent wrong priority */
             NVIC_IPR[A_u8IntId] = (A_u8GroupPriority << 7) | (A_u8SubPriority << 4);
         }
     #elif NVIC_PRIORITY_GROUPING == NVIC_PRIORITY_GROUPING_4

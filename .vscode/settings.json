@@ -4,6 +4,10 @@
         "std_types.h": "c",
         "afio_pri.h": "c",
         "bit_math.h": "c",
-        "afio_int.h": "c"
+        "afio_int.h": "c",
+        "bit": "c",
+        "cstddef": "c",
+        "limits": "c",
+        "type_traits": "c"
     }
 }
