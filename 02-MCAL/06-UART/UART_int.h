@@ -15,10 +15,39 @@ typedef enum {
     UART3_ID
 }UART_ENUM;
 
+/**********************************************************************************************************
+ * Description : Interface Function to Initialize the UART
+ * Outputs     : void
+ * Inputs      : void
+ ***********************************************************************************************************/
 void UART_vInit(void);
+
+/**********************************************************************************************************
+ * Description : Interface Function to Send a Byte
+ * Outputs     : void
+ * Inputs      : Byte to be sent, UART ID
+ ***********************************************************************************************************/
 void UART_vSendByte(u8 A_u8Data, UART_ENUM A_u8UART_ID);
+
+/**********************************************************************************************************
+ * Description : Interface Function to Send a String
+ * Outputs     : void
+ * Inputs      : String to be sent, UART ID
+ ***********************************************************************************************************/
 void UART_vSendString(u8 *A_u8Data, UART_ENUM A_u8UART_ID);
+
+/**********************************************************************************************************
+ * Description : Interface Function to Receive a Byte
+ * Outputs     : Received Byte
+ * Inputs      : UART ID
+ ***********************************************************************************************************/
 u8 UART_u8ReceiveByte(UART_ENUM A_u8UART_ID);
+
+/**********************************************************************************************************
+ * Description : Interface Function to Receive a String
+ * Outputs     : void
+ * Inputs      : String to be received, UART ID
+ ***********************************************************************************************************/
 void UART_vReceiveString(u8 *A_u8Data, UART_ENUM A_u8UART_ID);
 
 

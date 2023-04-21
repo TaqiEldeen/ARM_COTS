@@ -17,6 +17,11 @@
 #include "UART_reg.h"
 
 
+/**********************************************************************************************************
+ * Description : Interface Function to Initialize the UART
+ * Outputs     : void
+ * Inputs      : void
+ ***********************************************************************************************************/
 void UART_vInit(void){
     u16 L_u16Mantissa = 0;
     u8 L_u8Fraction = 0;
@@ -108,6 +113,12 @@ void UART_vInit(void){
     #endif /* UART3_STATE == UART_STATE_ENABLED */
 }
 
+
+/**********************************************************************************************************
+ * Description : Interface Function to Send a Byte
+ * Outputs     : void
+ * Inputs      : Byte to be sent, UART ID
+ ***********************************************************************************************************/
 void UART_vSendByte(u8 A_u8Data, UART_ENUM A_u8UartId){
     switch(A_u8UartId){
         case UART1_ID:
@@ -127,6 +138,11 @@ void UART_vSendByte(u8 A_u8Data, UART_ENUM A_u8UartId){
     }
 }
 
+/**********************************************************************************************************
+ * Description : Interface Function to Send a String
+ * Outputs     : void
+ * Inputs      : String to be sent, UART ID
+ ***********************************************************************************************************/
 void UART_vSendString(u8 *A_u8Data, UART_ENUM A_u8UartId){
     u8 L_u8Index = 0;
     while(A_u8Data[L_u8Index] != '\0'){
@@ -135,6 +151,11 @@ void UART_vSendString(u8 *A_u8Data, UART_ENUM A_u8UartId){
     }
 }
 
+/**********************************************************************************************************
+ * Description : Interface Function to Receive a Byte
+ * Outputs     : Received Byte
+ * Inputs      : UART ID
+ ***********************************************************************************************************/
 u8 UART_u8ReceiveByte(UART_ENUM A_u8UartId){
     u8 L_u8Data = 0;
     switch(A_u8UartId){
@@ -155,6 +176,13 @@ u8 UART_u8ReceiveByte(UART_ENUM A_u8UartId){
     }
     return L_u8Data;
 }
+
+/**********************************************************************************************************
+ * Description : Interface Function to Receive a String
+ * Outputs     : void
+ * Inputs      : String to be received, UART ID
+ * NOTE        : String must be terminated by '\r'
+ ***********************************************************************************************************/
 void UART_vReceiveString(u8 *A_u8Data, UART_ENUM A_u8UartId){
     u8 L_u8Index = 0;
     A_u8Data[L_u8Index] = UART_u8ReceiveByte(A_u8UartId);
