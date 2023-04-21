@@ -77,12 +77,21 @@ void DIO_vSetPinMode(u8 A_u8PortId, u8 A_u8PinId, u8 A_u8Mode);
 void DIO_vSetPinVal(u8 A_u8PortId, u8 A_u8PinId, u8 A_u8Value);
 
 /**********************************************************************************************************
+ * Description : Interface Function to Toggle a specific pin value
+ * Outputs     : Error State (Not yet implemented)
+ * Inputs      : A_u8PortId -> Port ID (A, B, C), A_u8PinId -> Pin ID (0 - 16)
+ * NOTES       : PORTC only has 3 pins (13, 14, 15)
+ ***********************************************************************************************************/
+void DIO_vTogPinVal(u8 A_u8PortId, u8 A_u8PinId);
+
+/**********************************************************************************************************
  * Description : Interface Function to Set a specific port value
  * Outputs     : Error State (Not yet implemented)
  * Inputs      : A_u8PortId -> Port ID (A, B, C), A_u8Value -> Port Value (LOW, HIGH)
  * NOTES       : PORTC only has 3 pins (13, 14, 15)
  ***********************************************************************************************************/
 void DIO_vSetPortVal(u8 A_u8PortId, u8 A_u8Value);
+
 
 /**********************************************************************************************************
  * Description : Interface Function to Get a specific pin value

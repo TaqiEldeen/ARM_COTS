@@ -213,3 +213,21 @@ void DIO_vSetPinDir(u8 A_u8PortId, u8 A_u8PinId, u8 A_u8Mode){
         /*	Invalid PIN ID	*/
     }
 }
+
+/**********************************************************************************************************
+ * Description : Interface Function to Toggle a specific pin value
+ * Outputs     : Error State (Not yet implemented)
+ * Inputs      : A_u8PortId -> Port ID (A, B, C), A_u8PinId -> Pin ID (0 - 16)
+ * NOTES       : PORTC only has 3 pins (13, 14, 15)
+ ***********************************************************************************************************/
+void DIO_vTogPinVal(u8 A_u8PortId, u8 A_u8PinId){
+	switch (A_u8PortId)
+	{
+		case PORTA_ID:  GPIOA_ODR ^= (1 << A_u8PinId);  break;
+		case PORTB_ID:  GPIOB_ODR ^= (1 << A_u8PinId);  break;
+		case PORTC_ID:  GPIOC_ODR ^= (1 << A_u8PinId);  break;
+		default:
+			/*	Invalid PORT ID	*/
+			break;
+	}
+}
