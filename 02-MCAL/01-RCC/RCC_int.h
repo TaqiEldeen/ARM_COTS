@@ -83,5 +83,12 @@ void RCC_vEnableClk(u8 A_u8BusId, u8 A_u8PerId );
  ***********************************************************************************************************/
 void RCC_vInitSysClk(void);
 
+/**********************************************************************************************************
+ * Description : Interface Function to Set the ADC Prescaler
+ * Outputs     : Error State (Not yet implemented)
+ * Inputs      : A_u8PreScaler -> ADC Prescaler
+ ***********************************************************************************************************/
+void RCC_vSetADCPreScaler(u8 A_u8PreScaler);
+
 
 #endif
