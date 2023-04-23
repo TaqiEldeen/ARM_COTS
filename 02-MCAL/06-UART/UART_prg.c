@@ -10,6 +10,10 @@
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
+/*          MCAL Inclusion          */
+#include "DIO_int.h"
+
+
 /*          Module Inclusion           */
 #include "UART_pri.h"
 #include "UART_cfg.h"
@@ -26,6 +30,9 @@ void UART_vInit(void){
     u16 L_u16Mantissa = 0;
     u8 L_u8Fraction = 0;
     #if UART1_STATE == UART_STATE_ENABLED
+
+        DIO_vSetPinMode(PORTA_ID, PIN9_ID, OUTPUT_10MHZ_AFPP);	// TX pin
+        DIO_vSetPinMode(PORTA_ID, PIN10_ID, INPUT_PULLUP);	// RX pin
 
         SET_BIT(USART1->CR1, UE); // Enable USART1
         SET_BIT(USART1->CR1, TE); // Enable TX
@@ -56,6 +63,9 @@ void UART_vInit(void){
 
     #if UART2_STATE == UART_STATE_ENABLED
 
+        DIO_vSetPinMode(PORTA_ID, PIN2_ID, OUTPUT_10MHZ_AFPP);	// TX pin
+        DIO_vSetPinMode(PORTA_ID, PIN3_ID, INPUT_PULLUP);	// RX pin
+
         SET_BIT(USART2->CR1, UE); // Enable USART2
         SET_BIT(USART2->CR1, TE); // Enable TX
         SET_BIT(USART2->CR1, RE); // Enable RX
@@ -84,6 +94,9 @@ void UART_vInit(void){
     #endif /* UART2_STATE == UART_STATE_ENABLED */
 
     #if UART3_STATE == UART_STATE_ENABLED
+
+        DIO_vSetPinMode(PORTB_ID, PIN10_ID, OUTPUT_10MHZ_AFPP);	// TX pin
+        DIO_vSetPinMode(PORTB_ID, PIN11_ID, INPUT_PULLUP);	// RX pin
 
         SET_BIT(USART3->CR1, UE); // Enable USART1
         SET_BIT(USART3->CR1, TE); // Enable TX
