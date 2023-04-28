@@ -12,10 +12,12 @@
 /*
 *   UART interrupt enable/disable
 *   Options: 1 -> Enable    , 0 -> Disable
+*   Only supported RXNEIE
 */
-#define UART_RX_COMPLETE_INTERRUPT_ENABLE           0
-#define UART_TX_COMPLETE_INTERRUPT_ENABLE           0
-#define UART_DATA_REGISTER_EMPTY_INTERRUPT_ENABLE   0
+#define UART_RX_COMPLETE_INTERRUPT_ENABLE               0
+#define UART_TX_COMPLETE_INTERRUPT_ENABLE               0
+#define UART_TRANSMIT_REGISTER_EMPTY_INTERRUPT_ENABLE   0
+#define UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE   1       
 
 /*
 *   UART Data Length

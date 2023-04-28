@@ -20,6 +20,12 @@
 #include "UART_int.h"
 #include "UART_reg.h"
 
+/*          Global Variables            */
+static ptr_func_Iu16_Ov G_Uart1CallBack = ADDRESS_NULL;
+static ptr_func_Iu16_Ov G_Uart2CallBack = ADDRESS_NULL;
+static ptr_func_Iu16_Ov G_Uart3CallBack = ADDRESS_NULL;
+
+
 
 /**********************************************************************************************************
  * Description : Interface Function to Initialize the UART
@@ -54,6 +60,10 @@ void UART_vInit(void){
             CLR_BIT(USART1->CR2, 12);
         #endif /* UART_STOP_BIT == UART_STOP_BIT_2 */
 
+        #if UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1
+            SET_BIT(USART1->CR1, RXNEIE);
+        #endif /* UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1 */
+
         L_u16Mantissa = (u16)UART1_BAUD_RATE;
         L_u8Fraction = (u8)((UART1_BAUD_RATE - L_u16Mantissa) * 16.0);
 
@@ -86,6 +96,10 @@ void UART_vInit(void){
             CLR_BIT(USART2->CR2, 12);
         #endif /* UART_STOP_BIT == UART_STOP_BIT_2 */
 
+        #if UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1
+            SET_BIT(USART2->CR1, RXNEIE);
+        #endif /* UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1 */
+
         L_u16Mantissa = (u16)UART1_BAUD_RATE;
         L_u8Fraction = (u8)((UART1_BAUD_RATE - L_u16Mantissa) * 16.0);
 
@@ -117,6 +131,10 @@ void UART_vInit(void){
             SET_BIT(USART3->CR2, 13); // 2 stop bits
             CLR_BIT(USART3->CR2, 12);
         #endif /* UART_STOP_BIT == UART_STOP_BIT_2 */
+
+        #if UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1
+            SET_BIT(USART3->CR1, RXNEIE);
+        #endif /* UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1 */
 
         L_u16Mantissa = (u16)UART1_BAUD_RATE;
         L_u8Fraction = (u8)((UART1_BAUD_RATE - L_u16Mantissa) * 16.0);
@@ -204,4 +222,52 @@ void UART_vReceiveString(u8 *A_u8Data, UART_ENUM A_u8UartId){
         A_u8Data[L_u8Index] = UART_u8ReceiveByte(A_u8UartId);
     }
     A_u8Data[L_u8Index] = '\0';
+}
+
+/**********************************************************************************************************
+ * Description : Interface Function to Set Call Back Function
+ * Outputs     : void
+ * Inputs      : Pointer to Call Back Function, UART ID
+ ***********************************************************************************************************/
+void UART_vSetCallBack(ptr_func_Iu16_Ov A_ptr, UART_ENUM A_u8UartId){
+    switch(A_u8UartId){
+        case UART1_ID:
+            G_Uart1CallBack = A_ptr;
+            break;
+        case UART2_ID:
+            G_Uart2CallBack = A_ptr;
+            break;
+        case UART3_ID:
+            G_Uart3CallBack = A_ptr;
+            break;
+        default:
+            break;
+    }
+}
+
+/* Only Used for RXNE */
+void USART1_IRQHandler() {
+    if(G_Uart1CallBack != ADDRESS_NULL){
+        G_Uart1CallBack( USART1->DR );
+    } else {
+        USART1->DR;
+    }
+}
+
+/* Only Used for RXNE */
+void USART2_IRQHandler() {
+    if(G_Uart2CallBack != ADDRESS_NULL){
+        G_Uart2CallBack( USART2->DR );
+    } else {
+        USART2->DR;
+    }
+}
+
+/* Only Used for RXNE */
+void USART3_IRQHandler() {
+    if(G_Uart3CallBack != ADDRESS_NULL){
+        G_Uart3CallBack( USART3->DR );
+    } else {
+        USART3->DR;
+    }
 }

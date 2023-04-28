@@ -50,5 +50,12 @@ u8 UART_u8ReceiveByte(UART_ENUM A_u8UART_ID);
  ***********************************************************************************************************/
 void UART_vReceiveString(u8 *A_u8Data, UART_ENUM A_u8UART_ID);
 
+/**********************************************************************************************************
+ * Description : Interface Function to Set Call Back Function
+ * Outputs     : void
+ * Inputs      : Pointer to Call Back Function, UART ID
+ ***********************************************************************************************************/
+void UART_vSetCallBack(ptr_func_Iu16_Ov A_ptr, UART_ENUM A_u8UartId);
+
 
 #endif /* UART_INT_H */
