@@ -43,6 +43,16 @@ typedef enum
     EXTI_15
 }EXTI_Line_t;
 
+
+/**
+ * @brief Sense Control for the external interrupt
+ * @note  Use this with the EXTI_vSetSenseControl() function
+ */
+#define EXTI_SENSE_CONTROL_RISING_EDGE      0
+#define EXTI_SENSE_CONTROL_FALLING_EDGE     1
+#define EXTI_SENSE_CONTROL_BOTH_EDGES       2
+
+
 /**********************************************************************************************************
  * Description : Interface Function to Intialize the EXTI
  * Outputs     : void
