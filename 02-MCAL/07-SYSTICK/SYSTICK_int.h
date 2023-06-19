@@ -57,4 +57,28 @@ void SYSTICK_vTurnOn(void);
  */
 void SYSTICK_vSetCallBack(ptr_func_t A_ptr_func);
 
+/**
+ * @brief Interface Function to Set the Interval for only one time
+ * 
+ * @param A_u32Ticks the ticks needed for this interval
+ * @param A_ptr_func the function to be called after this interval
+ */
+void SYSTICK_vSetIntervalSingle(u32 A_u32Ticks, ptr_func_t A_ptr_func);
+
+/**
+ * @brief Interface Function to Set the Interval for periodic calls
+ * 
+ * @param A_u32Ticks the ticks needed for this interval
+ * @param A_ptr_func the function to be called after this interval
+ */
+void SYSTICK_vSetIntervalPeriodic(u32 A_u32Ticks, ptr_func_t A_ptr_func);
+
+/**
+ * @brief Interface Function to set a busy wait for a specific time
+ * 
+ * @param A_u32Ticks the ticks needed for this busy wait
+ */
+void SYSTICK_vSetBusyWait(u32 A_u32Ticks);
+
+
 #endif // SYSTICK_INT_H

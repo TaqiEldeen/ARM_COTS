@@ -23,15 +23,22 @@
 static ptr_func_t SYSTICK_CallBack = ADDRESS_NULL;
 
 /**
+ * @brief Global Variable to Hold the state of the SYSTICK in Async mode
+ * 
+ */
+static u8 isSingleInterval = FALSE;
+
+/**
  * @brief Interface Function to Initialize the SYSTICK
  * 
+ * @note This Function enables the SYSTICK by default
+ *       To disable the SYSTICK you can call the SYSTICK_vTurnOff() function
  */
 void SYSTICK_vInit(void) {
     SYSTICK-> CTRL = 0;                       /* Clear CTRL */
     SYSTICK-> LOAD = SYSTICK_RELOAD_VALUE;    /* Set the maximum value */   
     SYSTICK-> VAL  = 0;                       /* Clear the current value */
     SYSTICK-> CTRL |= (SYSTICK_ENABLE << ENABLE)              /* Enable the counter */
-                    | (SYSTICK_INTERRUPT << TICKINT)          /* Enable the interrupt */
                     | (SYSTICK_CLKSOURCE << CLKSOURCE);       /* Select the clock source */
 }
 
@@ -79,22 +86,64 @@ u32 SYSTICK_u32GetRemainingTicks(void) {
 }
 
 /**
- * @brief Interface Function to Set the CallBack Function
+ * @brief Interface Function to Set the Interval for only one time
  * 
- * @param A_ptr_func 
+ * @param A_u32Ticks the ticks needed for this interval
+ * @param A_ptr_func the function to be called after this interval
  */
-void SYSTICK_vSetCallBack(ptr_func_t A_ptr_func){
-    SYSTICK_CallBack = A_ptr_func;
+void SYSTICK_vSetIntervalSingle(u32 A_u32Ticks, ptr_func_t A_ptr_func){
+    SYSTICK-> CTRL |= (1 << TICKINT);          /* Enable the interrupt */
+    SYSTICK-> LOAD = A_u32Ticks;               /* Set the maximum value */
+    SYSTICK-> VAL  = 0;                        /* Clear the current value */
+    SYSTICK_CallBack = A_ptr_func;             /* Set the CallBack Function */
+    isSingleInterval = TRUE;                   /* Set the state to single interval */
+}
+
+/**
+ * @brief Interface Function to Set the Interval for periodic calls
+ * 
+ * @param A_u32Ticks the ticks needed for this interval
+ * @param A_ptr_func the function to be called after this interval
+ */
+void SYSTICK_vSetIntervalPeriodic(u32 A_u32Ticks, ptr_func_t A_ptr_func){
+    SYSTICK-> CTRL |= (1 << TICKINT);          /* Enable the interrupt */
+    SYSTICK-> LOAD = A_u32Ticks;               /* Set the maximum value */
+    SYSTICK-> VAL  = 0;                        /* Clear the current value */
+    SYSTICK_CallBack = A_ptr_func;             /* Set the CallBack Function */
+    isSingleInterval = FALSE;                  /* Set the state to single interval */
+}
+
+/**
+ * @brief Interface Function to set a busy wait for a specific time
+ * 
+ * @param A_u32Ticks the ticks needed for this busy wait
+ */
+void SYSTICK_vSetBusyWait(u32 A_u32Ticks){
+    SYSTICK-> CTRL &= ~(1 << TICKINT);          /* Disable the interrupt */
+    SYSTICK-> LOAD = A_u32Ticks;                /* Set the maximum value */
+    SYSTICK-> VAL  = 0;                         /* Clear the current value */
+    while (GET_BIT(SYSTICK-> CTRL, COUNTFLAG) == 0)
+    {
+        /* Wait for time to pass */
+    }
 }
 
 /**
  * @brief ISR Function to Handle the SYSTICK Interrupt
  * 
- * @return ptr_func_t 
- */
+ *  */
 void SysTick_Handler(void) {
     if (SYSTICK_CallBack != ADDRESS_NULL) {
         SYSTICK_CallBack();
+
+        if(isSingleInterval) {
+            isSingleInterval = FALSE;
+            SYSTICK-> CTRL &= ~(1 << TICKINT);          /* Disable the interrupt */
+        } 
+        else {
+            /*  Do Nothing  */
+        }
+        
     } else {
         /*  Do Nothing  */
     }
