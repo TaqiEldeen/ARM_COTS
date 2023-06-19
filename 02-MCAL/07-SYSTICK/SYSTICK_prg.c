@@ -31,15 +31,13 @@ static u8 isSingleInterval = FALSE;
 /**
  * @brief Interface Function to Initialize the SYSTICK
  * 
- * @note This Function enables the SYSTICK by default
- *       To disable the SYSTICK you can call the SYSTICK_vTurnOff() function
+ * @note To enable the SYSTICK you can call the SYSTICK_vTurnOff() function
  */
 void SYSTICK_vInit(void) {
-    SYSTICK-> CTRL = 0;                       /* Clear CTRL */
-    SYSTICK-> LOAD = SYSTICK_RELOAD_VALUE;    /* Set the maximum value */   
-    SYSTICK-> VAL  = 0;                       /* Clear the current value */
-    SYSTICK-> CTRL |= (SYSTICK_ENABLE << ENABLE)              /* Enable the counter */
-                    | (SYSTICK_CLKSOURCE << CLKSOURCE);       /* Select the clock source */
+    SYSTICK-> CTRL = 0;                                       /* Clear CTRL */
+    SYSTICK-> LOAD = SYSTICK_RELOAD_VALUE;                    /* Set the maximum value */   
+    SYSTICK-> VAL  = 0;                                       /* Clear the current value */
+    SYSTICK-> CTRL |= (SYSTICK_CLKSOURCE << CLKSOURCE);       /* Select the clock source */
 }
 
 /**
