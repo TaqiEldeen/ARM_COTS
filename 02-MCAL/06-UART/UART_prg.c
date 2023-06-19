@@ -144,6 +144,133 @@ void UART_vInit(void){
     #endif /* UART3_STATE == UART_STATE_ENABLED */
 }
 
+/**********************************************************************************************************
+ * Description : Interface Function to Initialize the UART1
+ * Outputs     : void
+ * Inputs      : void
+ **********************************************************************************************************/
+void UART_vInitUart1(void){
+    u16 L_u16Mantissa = 0;
+    u8 L_u8Fraction = 0;
+
+    DIO_vSetPinMode(PORTA_ID, PIN9_ID, OUTPUT_10MHZ_AFPP);	// TX pin
+    DIO_vSetPinMode(PORTA_ID, PIN10_ID, INPUT_PULLUP);	// RX pin
+
+    SET_BIT(USART1->CR1, UE); // Enable USART1
+    SET_BIT(USART1->CR1, TE); // Enable TX
+    SET_BIT(USART1->CR1, RE); // Enable RX
+
+    #if UART_DATA_LENGTH == UART_DATA_LENGTH_9
+        SET_BIT(USART1->CR1, M); // 9-bit data
+    #endif /* UART_DATA_LENGTH == UART_DATA_LENGTH_9 */
+
+    #if UART_PARITY_MODE == UART_PARITY_MODE_EVEN
+        SET_BIT(USART1->CR1, PCE); // Enable parity
+    #elif UART_PARITY_MODE == UART_PARITY_MODE_ODD
+        SET_BIT(USART1->CR1, PCE); // Enable parity
+        SET_BIT(USART1->CR1, PS);  // Odd parity
+    #endif /* UART_PARITY_MODE == UART_PARITY_MODE_EVEN */
+
+    #if UART_STOP_BIT == UART_STOP_BIT_2
+        SET_BIT(USART1->CR2, 13); // 2 stop bits
+        CLR_BIT(USART1->CR2, 12);
+    #endif /* UART_STOP_BIT == UART_STOP_BIT_2 */
+
+    #if UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1
+        SET_BIT(USART1->CR1, RXNEIE);
+    #endif /* UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1 */
+
+    L_u16Mantissa = (u16)UART1_BAUD_RATE;
+    L_u8Fraction = (u8)((UART1_BAUD_RATE - L_u16Mantissa) * 16.0);
+
+    USART1->BRR = (L_u16Mantissa << 4) | L_u8Fraction;
+}
+
+
+/**********************************************************************************************************
+ * Description : Interface Function to Initialize the UART2
+ * Outputs     : void
+ * Inputs      : void
+ **********************************************************************************************************/
+void UART_vInitUart2(void){
+    u16 L_u16Mantissa = 0;
+    u8 L_u8Fraction = 0;
+
+    DIO_vSetPinMode(PORTA_ID, PIN2_ID, OUTPUT_10MHZ_AFPP);	// TX pin
+    DIO_vSetPinMode(PORTA_ID, PIN3_ID, INPUT_FLOATING);	// RX pin
+
+    SET_BIT(USART2->CR1, UE); // Enable USART2
+    SET_BIT(USART2->CR1, TE); // Enable TX
+    SET_BIT(USART2->CR1, RE); // Enable RX
+
+    #if UART_DATA_LENGTH == UART_DATA_LENGTH_9
+        SET_BIT(USART2->CR1, M); // 9-bit data
+    #endif /* UART_DATA_LENGTH == UART_DATA_LENGTH_9 */
+
+    #if UART_PARITY_MODE == UART_PARITY_MODE_EVEN
+        SET_BIT(USART2->CR1, PCE); // Enable parity
+    #elif UART_PARITY_MODE == UART_PARITY_MODE_ODD
+        SET_BIT(USART2->CR1, PCE); // Enable parity
+        SET_BIT(USART2->CR1, PS);  // Odd parity
+    #endif /* UART_PARITY_MODE == UART_PARITY_MODE_EVEN */
+
+    #if UART_STOP_BIT == UART_STOP_BIT_2
+        SET_BIT(USART2->CR2, 13); // 2 stop bits
+        CLR_BIT(USART2->CR2, 12);
+    #endif /* UART_STOP_BIT == UART_STOP_BIT_2 */
+
+    #if UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1
+        SET_BIT(USART2->CR1, RXNEIE);
+    #endif /* UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1 */
+
+    L_u16Mantissa = (u16)UART1_BAUD_RATE;
+    L_u8Fraction = (u8)((UART1_BAUD_RATE - L_u16Mantissa) * 16.0);
+
+    USART2->BRR = (L_u16Mantissa << 4) | L_u8Fraction;
+}
+
+
+/**********************************************************************************************************
+ * Description : Interface Function to Initialize the UART3
+ * Outputs     : void
+ * Inputs      : void
+ **********************************************************************************************************
+void UART_vInitUart3(void){
+    u16 L_u16Mantissa = 0;
+    u8 L_u8Fraction = 0;
+
+    DIO_vSetPinMode(PORTB_ID, PIN10_ID, OUTPUT_10MHZ_AFPP);	// TX pin
+    DIO_vSetPinMode(PORTB_ID, PIN11_ID, INPUT_PULLUP);	// RX pin
+
+    SET_BIT(USART3->CR1, UE); // Enable USART1
+    SET_BIT(USART3->CR1, TE); // Enable TX
+    SET_BIT(USART3->CR1, RE); // Enable RX
+
+    #if UART_DATA_LENGTH == UART_DATA_LENGTH_9
+        SET_BIT(USART3->CR1, M); // 9-bit data
+    #endif /* UART_DATA_LENGTH == UART_DATA_LENGTH_9 */
+
+    #if UART_PARITY_MODE == UART_PARITY_MODE_EVEN
+        SET_BIT(USART3->CR1, PCE); // Enable parity
+    #elif UART_PARITY_MODE == UART_PARITY_MODE_ODD
+        SET_BIT(USART3->CR1, PCE); // Enable parity
+        SET_BIT(USART3->CR1, PS);  // Odd parity
+    #endif /* UART_PARITY_MODE == UART_PARITY_MODE_EVEN */
+
+    #if UART_STOP_BIT == UART_STOP_BIT_2
+        SET_BIT(USART3->CR2, 13); // 2 stop bits
+        CLR_BIT(USART3->CR2, 12);
+    #endif /* UART_STOP_BIT == UART_STOP_BIT_2 */
+
+    #if UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1
+        SET_BIT(USART3->CR1, RXNEIE);
+    #endif /* UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1 */
+
+    L_u16Mantissa = (u16)UART1_BAUD_RATE;
+    L_u8Fraction = (u8)((UART1_BAUD_RATE - L_u16Mantissa) * 16.0);
+
+    USART3->BRR = (L_u16Mantissa << 4) | L_u8Fraction;
+}
 
 /**********************************************************************************************************
  * Description : Interface Function to Send a Byte
