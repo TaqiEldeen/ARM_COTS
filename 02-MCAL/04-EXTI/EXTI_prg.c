@@ -49,6 +49,7 @@ void EXTI_vDisable(u8 A_u8Line){
  * Description : Interface Function to Set the EXTI Sense Control
  * Outputs     : void
  * Inputs      : line number, sense control
+ * NOTES       : To Enable the EXTI, you have to use the EXTI_vEnable function
  ***********************************************************************************************************/
 void EXTI_vSetSenseControl(u8 A_u8Line, u8 A_u8SenseControl){
     switch(A_u8SenseControl){
