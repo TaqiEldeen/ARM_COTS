@@ -234,7 +234,7 @@ void UART_vInitUart2(void){
  * Description : Interface Function to Initialize the UART3
  * Outputs     : void
  * Inputs      : void
- **********************************************************************************************************
+ **********************************************************************************************************/
 void UART_vInitUart3(void){
     u16 L_u16Mantissa = 0;
     u8 L_u8Fraction = 0;
