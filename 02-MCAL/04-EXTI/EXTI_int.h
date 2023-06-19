@@ -88,4 +88,11 @@ void EXTI_vSetSenseControl(u8 A_u8Line, u8 A_u8SenseControl);
  ***********************************************************************************************************/
 void EXTI_vSetCallback(u8 A_u8Line, ptr_func_t);
 
+/**********************************************************************************************************
+ * Description : Interface Function to Clear the EXTI Pending Flag
+ * Outputs     : void
+ * Inputs      : line number
+ ***********************************************************************************************************/
+void EXTI_vSwTrigger(u8 A_u8Line);
+
 #endif  /* EXTI_INT_H */
