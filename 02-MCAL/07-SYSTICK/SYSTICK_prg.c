@@ -95,6 +95,7 @@ void SYSTICK_vSetIntervalSingle(u32 A_u32Ticks, ptr_func_t A_ptr_func){
     SYSTICK-> VAL  = 0;                        /* Clear the current value */
     SYSTICK_CallBack = A_ptr_func;             /* Set the CallBack Function */
     isSingleInterval = TRUE;                   /* Set the state to single interval */
+    SYSTICK_vTurnOn();                         
 }
 
 /**
@@ -109,6 +110,7 @@ void SYSTICK_vSetIntervalPeriodic(u32 A_u32Ticks, ptr_func_t A_ptr_func){
     SYSTICK-> VAL  = 0;                        /* Clear the current value */
     SYSTICK_CallBack = A_ptr_func;             /* Set the CallBack Function */
     isSingleInterval = FALSE;                  /* Set the state to single interval */
+    SYSTICK_vTurnOn();
 }
 
 /**
@@ -120,10 +122,12 @@ void SYSTICK_vSetBusyWait(u32 A_u32Ticks){
     SYSTICK-> CTRL &= ~(1 << TICKINT);          /* Disable the interrupt */
     SYSTICK-> LOAD = A_u32Ticks;                /* Set the maximum value */
     SYSTICK-> VAL  = 0;                         /* Clear the current value */
+    SYSTICK_vTurnOn();
     while (GET_BIT(SYSTICK-> CTRL, COUNTFLAG) == 0)
     {
         /* Wait for time to pass */
     }
+    SYSTICK_vTurnOff();
 }
 
 /**
