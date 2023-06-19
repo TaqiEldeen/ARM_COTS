@@ -57,8 +57,10 @@ typedef enum
  * Description : Interface Function to Intialize the EXTI
  * Outputs     : void
  * Inputs      : void
+ * NOTES       : To Enable the EXTI, you have to use the EXTI_vEnable function
+ *               Use the AFIO_vSetEXTICfg() function to select the needed pin for a line (EXTI)
  ***********************************************************************************************************/
-void EXTI_vInit(void);
+void EXTI_vInit(u8 A_u8Line, u8 A_u8SenseControl);
 
 /**********************************************************************************************************
  * Description : Interface Function to Enable the EXTI
