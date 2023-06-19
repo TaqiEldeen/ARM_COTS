@@ -111,6 +111,7 @@ local.properties
 .history
 .ionide
 
+Docs
 .project
 
 *.json
