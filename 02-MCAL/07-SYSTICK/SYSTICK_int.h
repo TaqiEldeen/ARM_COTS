@@ -51,13 +51,6 @@ void SYSTICK_vTurnOff(void);
 void SYSTICK_vTurnOn(void);
 
 /**
- * @brief Interface Function to Set the CallBack Function
- * 
- * @param A_ptr_func 
- */
-void SYSTICK_vSetCallBack(ptr_func_t A_ptr_func);
-
-/**
  * @brief Interface Function to Set the Interval for only one time
  * 
  * @param A_u32Ticks the ticks needed for this interval

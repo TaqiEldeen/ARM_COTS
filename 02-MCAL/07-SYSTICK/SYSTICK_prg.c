@@ -138,6 +138,7 @@ void SysTick_Handler(void) {
         if(isSingleInterval) {
             isSingleInterval = FALSE;
             SYSTICK-> CTRL &= ~(1 << TICKINT);          /* Disable the interrupt */
+            SYSTICK_vTurnOff();
         } 
         else {
             /*  Do Nothing  */
