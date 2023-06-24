@@ -20,6 +20,7 @@
  * Description : Interface Function to select the needed pin for a line (EXTI)
  * Outputs     : void
  * Inputs      : Needed line, needed pin
+ * NOTES       : Enable AFIO from RCC
  ***********************************************************************************************************/
 void AFIO_vSetEXTICfg(u8 A_u8Line, u8 A_u8PinId){
     u8 L_u8Index = 0;
