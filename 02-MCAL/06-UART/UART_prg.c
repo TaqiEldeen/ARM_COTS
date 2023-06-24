@@ -53,11 +53,13 @@ void UART_vInit(void){
         #elif UART_PARITY_MODE == UART_PARITY_MODE_ODD
             SET_BIT(USART1->CR1, PCE); // Enable parity
             SET_BIT(USART1->CR1, PS);  // Odd parity
+            SET_BIT(USART1->CR1, M); // 9-bit data
         #endif /* UART_PARITY_MODE == UART_PARITY_MODE_EVEN */
 
         #if UART_STOP_BIT == UART_STOP_BIT_2
             SET_BIT(USART1->CR2, 13); // 2 stop bits
             CLR_BIT(USART1->CR2, 12);
+            SET_BIT(USART1->CR1, M); // 9-bit data
         #endif /* UART_STOP_BIT == UART_STOP_BIT_2 */
 
         #if UART_READ_REGISTER_NOT_EMPTY_INTERRUPT_ENABLE == 1
