@@ -128,6 +128,16 @@ void SYSTICK_vSetBusyWait(u32 A_u32Ticks){
 }
 
 /**
+ * @brief Interface function to reset the systick
+ * 
+ * @note Resets the value of the VAL register
+ * 
+ */
+void SYSTICK_vReset(){
+    SYSTICK -> VAL = 0; 
+}
+
+/**
  * @brief ISR Function to Handle the SYSTICK Interrupt
  * 
  *  */
