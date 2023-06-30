@@ -48,7 +48,7 @@
     *	14- PLL_MUL_15
     *	15- PLL_MUL_16
     */
-    #define PLL_MUL_SELECT	PLL_MUL_2
+    #define PLL_MUL_SELECT	PLL_MUL_4
 
     /*
     *	PLL HSE clock source
@@ -89,7 +89,7 @@
 *	4- HCLK_DIV_8
 *	5- HCLK_DIV_16		
 */
-#define APB2_PRESCALLER		HCLK_NOT_DIVIDED
+#define APB2_PRESCALLER		HCLK_DIV_4
 
 /*
 *	APB low-speed prescaler (APB1)
@@ -101,7 +101,7 @@
 *	5- HCLK_DIV_16
 *	Warning: the software has to set correctly these bits to not exceed 36 MHz on this domain.
 */
-#define APB1_PRESCALLER		HCLK_NOT_DIVIDED
+#define APB1_PRESCALLER		HCLK_DIV_4
 
 /*
 *   AHB prescaler
