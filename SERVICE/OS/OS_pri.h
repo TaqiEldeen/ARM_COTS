@@ -16,6 +16,7 @@
 typedef struct{
     u16 periodicty;
     u16 firstDelay;
+    u8  state;
     void (*Fptr)(void);
 }task_t;
 
@@ -26,5 +27,13 @@ typedef struct{
  * @note The scheduler is configured based on the configuration file
  */
 static void OS_vScheduler(void);
+
+
+/**
+ * Options for scheduler 
+ * 
+ */
+#define PRIORITY_BASED  1
+
 
 #endif // OS_PRI_H
