@@ -25,6 +25,8 @@ typedef long double f128;
 
 typedef void (*ptr_func_t)(void);
 typedef void (*ptr_func_Iu16_Ov)(u16);
+typedef void (*ptr_func_Iu8_Ov)(u8);
+
 
 #define TRUE 1
 #define FALSE 0
