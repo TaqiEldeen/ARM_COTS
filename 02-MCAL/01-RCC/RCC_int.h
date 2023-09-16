@@ -39,7 +39,7 @@ typedef enum {
     TIM9 = 19,
     TIM10,
     TIM11,
-    TIM2,
+    TIM2 = 0,
     TIM3,
     TIM4,
     TIM5,
