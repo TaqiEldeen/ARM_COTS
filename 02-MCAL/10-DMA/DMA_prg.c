@@ -113,4 +113,7 @@ void DMA1_Channel1_IRQHandler(){
     if(G_DMA_ISR != ADDRESS_NULL) {
         G_DMA_ISR();
     }
+
+    /* For now i clear all interrupts regardless of which one is used */
+    DMA1->IFCR |= ((1<<CGIF1) | (1<<CTCIF1) | (1<<CHTIF1) | (1<<CTEIF1));
 }
