@@ -85,7 +85,7 @@ typedef struct {
  * 
  * @param dmaCfg struct object of type DMA_CFG_t
  */
-void DMA_vInit( DMA_CFG_t * dmaCfg );
+void DMA_vInit( DMA_CFG_t* dmaCfg );
 
 /**
  * @brief API to start the DMA transaction
@@ -95,7 +95,7 @@ void DMA_vInit( DMA_CFG_t * dmaCfg );
  * @param A_pu32DestinationAddress pointer to the destination address
  * @param A_u16BlockLength length of the block to be transferred
  */
-void DMA_vStartTransaction(DMA_CFG_t * A_dmaCfg, u32 * A_pu32SourceAddress, u32 * A_pu32DestinationAddress, u16 A_u16BlockLength);
+void DMA_vStartTransaction(DMA_CFG_t* dmaCfg, u32 * A_pu32SourceAddress, u32 * A_pu32DestinationAddress, u16 A_u16BlockLength);
 
 /**
  * @brief API to set the callback function
@@ -104,5 +104,6 @@ void DMA_vStartTransaction(DMA_CFG_t * A_dmaCfg, u32 * A_pu32SourceAddress, u32 
  */
 void DMA_vSetCallBack(ptr_func_t callBack);
 
+void DMA_vDisable(DMA_CFG_t* dmaCfg);
 
 #endif // DMA_INT_H
