@@ -93,9 +93,10 @@ static void RCC_vInitHSE(){
  ***********************************************************************************************************/
 static void RCC_vInitPLL(){
 
+#if RCC_SYSCLK_SELECT == PLL_SELECT
 	RCC_CFGR &= PLL_MUL_MASK ;
 	RCC_CFGR |= (PLL_MUL_SELECT << PLLMUL);
-
+#endif
 	#if PLL_SRC_SELECT == HSI_DIV_2_PLL
 		/*	Enable HSI	*/
 		SET_BIT(RCC_CR, HSION);
