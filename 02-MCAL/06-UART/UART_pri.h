@@ -44,4 +44,13 @@
 #define UART_STATE_ENABLED      0
 #define UART_STATE_DISABLED     1
 
+#define DMA_UART1_RX_CH         DMA_CHANNEL_5      
+#define DMA_UART1_TX_CH         DMA_CHANNEL_4
+
+#define DMA_UART2_RX_CH         DMA_CHANNEL_6      
+#define DMA_UART2_TX_CH         DMA_CHANNEL_7
+
+#define DMA_UART3_RX_CH         DMA_CHANNEL_3
+#define DMA_UART3_TX_CH         DMA_CHANNEL_2
+
 #endif /* UART_PRI_H */

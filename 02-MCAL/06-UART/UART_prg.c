@@ -12,6 +12,7 @@
 
 /*          MCAL Inclusion          */
 #include "DIO_int.h"
+#include "DMA_int.h"
 
 
 /*          Module Inclusion           */
@@ -372,6 +373,100 @@ void UART_vSetCallBack(ptr_func_Iu16_Ov A_ptr, UART_ENUM A_u8UartId){
         default:
             break;
     }
+}
+
+/**
+ * @brief   This function is used to setup the DMA for UART1 TX and uses channel 4 of DMA1
+ * 
+ * @param A_u32SourceAddress    Pointer to the source address
+ * @param A_u16BlockLength      Length of the block to be transmitted
+ * 
+ */
+void UART_vSetupDMA_UART1_TX(u32* A_u32SourceAddress, u16 A_u16BlockLength){
+    DMA_CFG_t L_DMA1Channel4Cfg = {
+        .channel                    = DMA_UART1_TX_CH,
+        .direction                  = DMA_DIR_MEMORY_TO_PERIPHERAL,
+        .circularMode               = DMA_CIRCULAR_MODE_DISABLE,
+        .peripheralIncrement        = DMA_PERIPHERAL_INCREMENT_DISABLE,
+        .memoryIncrement            = DMA_MEMORY_INCREMENT_ENABLE,
+        .peripheralSize             = DMA_PERIPHERAL_SIZE_8BITS,
+        .memorySize                 = DMA_MEMORY_SIZE_8BITS,
+        .priority                   = DMA_PRIORITY_MEDIUM,
+        .halfTransferInterrupt      = DMA_INTERRUPT_DISABLE,
+        .transferCompleteInterrupt  = DMA_INTERRUPT_ENABLE,
+        .transferErrorInterrupt     = DMA_INTERRUPT_DISABLE
+    };
+
+    DMA_vInit(&L_DMA1Channel4Cfg);
+
+    DMA_vStartTransaction(&L_DMA1Channel4Cfg, A_u32SourceAddress, (u32*)&(USART1->DR), A_u16BlockLength);
+}
+
+/**
+ * @brief   This function is used to setup the DMA for UART1 RX and uses channel 5 of DMA1
+ * 
+ * @param A_u32DestinationAddress   Pointer to the destination address
+ * @param A_u16BlockLength          Length of the block to be received
+ * 
+ */
+void UART_vSetupDMA_UART1_RX(u32* A_u32DestinationAddress, u16 A_u16BlockLength){
+    DMA_CFG_t L_DMA1Channel5Cfg = {
+        .channel                    = DMA_UART1_RX_CH,
+        .direction                  = DMA_DIR_PERIPHERAL_TO_MEMORY,
+        .circularMode               = DMA_CIRCULAR_MODE_DISABLE,
+        .peripheralIncrement        = DMA_PERIPHERAL_INCREMENT_DISABLE,
+        .memoryIncrement            = DMA_MEMORY_INCREMENT_ENABLE,
+        .peripheralSize             = DMA_PERIPHERAL_SIZE_8BITS,
+        .memorySize                 = DMA_MEMORY_SIZE_8BITS,
+        .priority                   = DMA_PRIORITY_MEDIUM,
+        .halfTransferInterrupt      = DMA_INTERRUPT_DISABLE,
+        .transferCompleteInterrupt  = DMA_INTERRUPT_ENABLE,
+        .transferErrorInterrupt     = DMA_INTERRUPT_DISABLE
+    };
+
+    DMA_vInit(&L_DMA1Channel5Cfg);
+
+    DMA_vStartTransaction(&L_DMA1Channel5Cfg, (u32*)&(USART1->DR), A_u32DestinationAddress, A_u16BlockLength);
+}
+
+/**
+ * @brief This function is used to setup the DMA for UART2 TX and uses channel 7 of DMA1
+ * 
+ * @param A_u32SourceAddress    Pointer to the source address
+ * @param A_u16BlockLength      Length of the block to be transmitted
+ */
+void UART_vSetupDMA_UART2_TX(u32* A_u32SourceAddress, u16 A_u16BlockLength){
+    
+}
+
+/**
+ * @brief This function is used to setup the DMA for UART2 RX and uses channel 6 of DMA1
+ * 
+ * @param A_u32DestinationAddress   Pointer to the destination address
+ * @param A_u16BlockLength          Length of the block to be received
+ */
+void UART_vSetupDMA_UART2_RX(u32* A_u32DestinationAddress, u16 A_u16BlockLength){
+
+}
+
+/**
+ * @brief This function is used to setup the DMA for UART3 TX and uses channel 2 of DMA1
+ * 
+ * @param A_u32SourceAddress    Pointer to the source address
+ * @param A_u16BlockLength      Length of the block to be transmitted
+ */
+void UART_vSetupDMA_UART3_TX(u32* A_u32SourceAddress, u16 A_u16BlockLength){
+
+}
+
+/**
+ * @brief This function is used to setup the DMA for UART3 RX and uses channel 3 of DMA1
+ * 
+ * @param A_u32DestinationAddress   Pointer to the destination address
+ * @param A_u16BlockLength          Length of the block to be received
+ */
+void UART_vSetupDMA_UART3_RX(u32* A_u32DestinationAddress, u16 A_u16BlockLength){
+
 }
 
 /* Only Used for RXNE */
