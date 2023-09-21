@@ -64,7 +64,7 @@ void UART_vSetCallBack(ptr_func_Iu16_Ov A_ptr, UART_ENUM A_u8UartId);
  * @param A_u16BlockLength      Length of the block to be transmitted
  * 
  */
-void UART_vSetupDMA_UART1_TX(u32* A_u32SourceAddress, u16 A_u16BlockLength);
+void UART_vSetupDMA_UART1_TX(DMA_CFG_t* A_DmaCfg, u32* A_u32SourceAddress, u16 A_u16BlockLength);
 
 /**
  * @brief   This function is used to setup the DMA for UART1 RX and uses channel 5 of DMA1
@@ -73,7 +73,7 @@ void UART_vSetupDMA_UART1_TX(u32* A_u32SourceAddress, u16 A_u16BlockLength);
  * @param A_u16BlockLength          Length of the block to be received
  * 
  */
-void UART_vSetupDMA_UART1_RX(u32* A_u32DestinationAddress, u16 A_u16BlockLength);
+void UART_vSetupDMA_UART1_RX(DMA_CFG_t* A_DmaCfg, u32* A_u32DestinationAddress, u16 A_u16BlockLength);
 
 /**
  * @brief This function is used to setup the DMA for UART2 TX and uses channel 7 of DMA1
@@ -81,7 +81,7 @@ void UART_vSetupDMA_UART1_RX(u32* A_u32DestinationAddress, u16 A_u16BlockLength)
  * @param A_u32SourceAddress    Pointer to the source address
  * @param A_u16BlockLength      Length of the block to be transmitted
  */
-void UART_vSetupDMA_UART2_TX(u32* A_u32SourceAddress, u16 A_u16BlockLength);
+void UART_vSetupDMA_UART2_TX(DMA_CFG_t* A_DmaCfg, u32* A_u32SourceAddress, u16 A_u16BlockLength);
 
 /**
  * @brief This function is used to setup the DMA for UART2 RX and uses channel 6 of DMA1
@@ -89,7 +89,7 @@ void UART_vSetupDMA_UART2_TX(u32* A_u32SourceAddress, u16 A_u16BlockLength);
  * @param A_u32DestinationAddress   Pointer to the destination address
  * @param A_u16BlockLength          Length of the block to be received
  */
-void UART_vSetupDMA_UART2_RX(u32* A_u32DestinationAddress, u16 A_u16BlockLength);
+void UART_vSetupDMA_UART2_RX(DMA_CFG_t* A_DmaCfg, u32* A_u32DestinationAddress, u16 A_u16BlockLength);
 
 /**
  * @brief This function is used to setup the DMA for UART3 TX and uses channel 2 of DMA1
@@ -97,7 +97,7 @@ void UART_vSetupDMA_UART2_RX(u32* A_u32DestinationAddress, u16 A_u16BlockLength)
  * @param A_u32SourceAddress    Pointer to the source address
  * @param A_u16BlockLength      Length of the block to be transmitted
  */
-void UART_vSetupDMA_UART3_TX(u32* A_u32SourceAddress, u16 A_u16BlockLength);
+void UART_vSetupDMA_UART3_TX(DMA_CFG_t* A_DmaCfg, u32* A_u32SourceAddress, u16 A_u16BlockLength);
 
 /**
  * @brief This function is used to setup the DMA for UART3 RX and uses channel 3 of DMA1
@@ -105,7 +105,7 @@ void UART_vSetupDMA_UART3_TX(u32* A_u32SourceAddress, u16 A_u16BlockLength);
  * @param A_u32DestinationAddress   Pointer to the destination address
  * @param A_u16BlockLength          Length of the block to be received
  */
-void UART_vSetupDMA_UART3_RX(u32* A_u32DestinationAddress, u16 A_u16BlockLength);
+void UART_vSetupDMA_UART3_RX(DMA_CFG_t* A_DmaCfg, u32* A_u32DestinationAddress, u16 A_u16BlockLength);
 
 
 #endif /* UART_INT_H */
