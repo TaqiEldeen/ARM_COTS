@@ -79,6 +79,14 @@ typedef struct {
     DMA_INTERRUPT_t               transferCompleteInterrupt;
 }DMA_CFG_t;
 
+/* UART DMA CHANNELS */
+#define DMA_CHANNEL_UART1_TX    DMA_CHANNEL_4
+#define DMA_CHANNEL_UART1_RX    DMA_CHANNEL_5
+#define DMA_CHANNEL_UART2_TX    DMA_CHANNEL_7
+#define DMA_CHANNEL_UART2_RX    DMA_CHANNEL_6
+#define DMA_CHANNEL_UART3_TX    DMA_CHANNEL_2
+#define DMA_CHANNEL_UART3_RX    DMA_CHANNEL_3
+
 
 /**
  * @brief API to initialize the DMA channel based on the selected configuration
