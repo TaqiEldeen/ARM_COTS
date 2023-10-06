@@ -29,6 +29,7 @@ void SPI_vInit(void){
                 | (USE_CRC              << CRCEN    )
                 | (DATA_FRAME           << DFF      )
                 | (USE_SSM              << SSM      )
+                | (1                    << SSI      )
                 | (DATA_ORDER           << LSBFIRST )
                 | (BAUD_RATE            << BR       )
                 | (SPI_MODE             << MSTR     )
