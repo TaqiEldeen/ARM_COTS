@@ -29,13 +29,15 @@ void SPI_vInit(void){
                 | (USE_CRC              << CRCEN    )
                 | (DATA_FRAME           << DFF      )
                 | (USE_SSM              << SSM      )
-                | (1                    << SSI      )
+                | (SSI_VAL              << SSI      )
                 | (DATA_ORDER           << LSBFIRST )
                 | (BAUD_RATE            << BR       )
                 | (SPI_MODE             << MSTR     )
                 | (CLOCK_POL            << CPOL     )
                 | (CLOCK_PHA            << CPHA     )   ;
     
+    SPI1->CR2 |= (SS_OUTPUT_EN << SSOE);
+
     /* Enable the SPI */
     SET_BIT( SPI1->CR1, SPE );
 }

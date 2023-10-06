@@ -82,6 +82,29 @@
  */
 #define USE_SSM     ENABLE
 
+/**
+ * @brief   Internal slave select
+ * 
+ * Used to select the master or slave
+ * 
+ * Options:
+ * 1- 1
+ * 2- 0
+ * 
+ */
+#define SSI_VAL     1
+
+/**
+ * @brief   Slave select output enable
+ * 
+ * Used to enable the slave select pin
+ * 
+ * Options:
+ * 1- ENABLE
+ * 2- DISABLE
+ * 
+ */
+#define SS_OUTPUT_EN   DISABLE
 
 /**
  * @brief Used to send MSB first or LSB first
