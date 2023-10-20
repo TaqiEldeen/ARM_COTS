@@ -137,18 +137,12 @@ void SPI_vReceiveString(u8 A_u8SlavePort, u8 A_u8SlavePin, u8* A_u8Data){
  * @param   A_u8Data: The data to be sent
  * @return  u8: The received data
  */
-u8 SPI_u8TransmitReceive(u8 A_u8SlavePort, u8 A_u8SlavePin, u8 A_u8Data){
-    /* Activate the slave */
-    DIO_vSetPinVal(A_u8SlavePort, A_u8SlavePin, VAL_LOW);
-
+u8 SPI_u8TransmitReceive(u8 A_u8Data){
     /* Send The Data */
     SPI1->DR = A_u8Data;
 
     /* Wait until the transmission is complete */
     while( GET_BIT( SPI1->SR, BSY ) == 1 );
-
-    /* Deactivate the slave */
-    DIO_vSetPinVal(A_u8SlavePort, A_u8SlavePin, VAL_HIGH);
 
     /* Return the received data */
     return SPI1->DR;

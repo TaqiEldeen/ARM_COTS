@@ -46,11 +46,9 @@ void SPI_vReceiveString(u8 A_u8SlavePort, u8 A_u8SlavePin, u8* A_u8Data);
 /**
  * @brief   This function is used to send and receive a byte of data
  * 
- * @param   A_u8SlavePort
- * @param   A_u8SlavePin
  * @param   A_u8Data: The data to be sent
  * @return  u8: The received data
  */
-u8 SPI_u8TransmitReceive(u8 A_u8SlavePort, u8 A_u8SlavePin, u8 A_u8Data);
+u8 SPI_u8TransmitReceive(u8 A_u8Data);
 
 #endif  /* SPI_INT_H */
