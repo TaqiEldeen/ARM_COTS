@@ -113,4 +113,12 @@ void GPT_vSetIntervalSingle(u8 A_u8TimerId, u32 A_u32Ticks, ptr_func_t A_ptr_fun
  */
 void GPT_vSetIntervalPeriodic(u8 A_u8TimerId, u32 A_u32Ticks, ptr_func_t A_ptr_func);
 
+/**
+ * @brief 
+ * 
+ * @param A_u8TimerId 
+ * @param A_u32Ticks 
+ */
+void GPT_vSetBusyWait(u8 A_u8TimerId, u32 A_u32Ticks);
+
 #endif  /* GPT_INT_H */

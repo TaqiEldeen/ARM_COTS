@@ -411,6 +411,97 @@ void GPT_vSetIntervalSingle(u8 A_u8TimerId, u32 A_u32Ticks, ptr_func_t A_ptr_fun
  * 
  * @param A_u8TimerId 
  * @param A_u32Ticks 
+ */
+void GPT_vSetBusyWait(u8 A_u8TimerId, u32 A_u32Ticks){
+
+    switch (A_u8TimerId)
+    {
+        case TIM2_ID:
+        {
+            /* Apply the AutoReload value */
+            TIM2->TIMx_ARR = A_u32Ticks;
+
+            /* Enable the timer */
+            GPT_vEnable(A_u8TimerId);
+
+            /* Wait for the update event */
+            while(GET_BIT(TIM2->TIMx_SR, UIF) == 0);
+
+            /* Clear the update flag */
+            CLR_BIT(TIM2->TIMx_SR, UIF);
+
+            /* Disable the timer */
+            GPT_vDisable(A_u8TimerId);
+
+
+            break;
+        }   
+
+        case TIM3_ID:   
+        {            
+            /* Apply the AutoReload value */
+            TIM3->TIMx_ARR = A_u32Ticks;
+            
+            /* Enable the timer */
+            GPT_vEnable(A_u8TimerId);
+
+            /* Wait for the update event */
+            while(GET_BIT(TIM3->TIMx_SR, UIF) == 0);
+
+            /* Clear the update flag */
+            CLR_BIT(TIM3->TIMx_SR, UIF);
+
+            /* Disable the timer */
+            GPT_vDisable(A_u8TimerId);
+            break;
+        }
+
+        case TIM4_ID:   
+        {
+            /* Apply the AutoReload value */
+            TIM4->TIMx_ARR = A_u32Ticks;
+
+            /* Enable the timer */
+            GPT_vEnable(A_u8TimerId);
+
+            /* Wait for the update event */
+            while(GET_BIT(TIM4->TIMx_SR, UIF) == 0);
+
+            /* Clear the update flag */
+            CLR_BIT(TIM4->TIMx_SR, UIF);
+
+            /* Disable the timer */
+            GPT_vDisable(A_u8TimerId);
+            break;
+        }
+
+        case TIM5_ID: 
+        {
+            /* Apply the AutoReload value */
+            TIM5->TIMx_ARR = A_u32Ticks;
+                
+            /* Enable the timer */
+            GPT_vEnable(A_u8TimerId);
+
+            /* Wait for the update event */
+            while(GET_BIT(TIM5->TIMx_SR, UIF) == 0);
+
+            /* Clear the update flag */
+            CLR_BIT(TIM5->TIMx_SR, UIF);
+
+            /* Disable the timer */
+            GPT_vDisable(A_u8TimerId);
+            break;
+        }
+        default:    /* Error */     break;
+    }
+}
+
+/**
+ * @brief 
+ * 
+ * @param A_u8TimerId 
+ * @param A_u32Ticks 
  * @param A_ptr_func 
  *
  * @note The bus frequency = APB1 x2 so take care
