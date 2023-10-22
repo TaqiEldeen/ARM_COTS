@@ -138,11 +138,14 @@ void SPI_vReceiveString(u8 A_u8SlavePort, u8 A_u8SlavePin, u8* A_u8Data){
  * @return  u8: The received data
  */
 u8 SPI_u8TransmitReceive(u8 A_u8Data){
+    /* Wait until the transmission  buffer is empty */
+    while( GET_BIT( SPI1->SR, TXE ) == 0 );
+
     /* Send The Data */
     SPI1->DR = A_u8Data;
 
-    /* Wait until the transmission is complete */
-    while( GET_BIT( SPI1->SR, BSY ) == 1 );
+    /* Wait until the receive buffer is full */
+    while( GET_BIT( SPI1->SR, RXNE ) == 0 );
 
     /* Return the received data */
     return SPI1->DR;

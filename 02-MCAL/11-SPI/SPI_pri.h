@@ -41,8 +41,8 @@
 #define DIV_256             7
 
 
-#define MASTER_MODE         0
-#define SLAVE_MODE          1
+#define MASTER_MODE         1
+#define SLAVE_MODE          0
 
 
 #define IDLE_LOW            0
